@@ -8,10 +8,8 @@ import java.time.Duration;
 
 public class Driver {
     /*
-            Bu class'ın amacı
-            belirlenen browser'a uygun webDriver objesi oluşturmak
+        Bu class'ın amacı belirlenen browser'a uygun webDriver objesi oluşturmak
      */
-
     public static WebDriver driver;
 
     public static WebDriver getDriver() {
@@ -24,6 +22,7 @@ public class Driver {
         }
 
         return driver;
+
     }
 
     public static void closeDriver() {
@@ -32,7 +31,6 @@ public class Driver {
             driver.close();
             driver = null;
         }
-
     }
 
     public static void quitDriver() {
@@ -41,6 +39,5 @@ public class Driver {
             driver.quit();
             driver = null;
         }
-
     }
 }

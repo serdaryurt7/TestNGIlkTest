@@ -11,10 +11,38 @@ import java.util.List;
 
 public class C04_DependsOnMethods {
 
+    /*
+        Priority test method'larının çalışma sıralamasını belirler
+        ancak bir önceki method çalışmadıysa veya failed olduysa
+        sonraki test method'unun boşuna çalışmasına engel olmaz
+
+        1- @Test(dependsOnMethods="a") kullandığımızda
+        bağlı olan method (b), bağlı olduğu method'u (a) kontrol eder
+        Eğer a method'u çalışmadıysa veya failed oldu ise b'yi ignore eder
+
+        2- Test method'ları bağımsız olarak çalıştırılabilir
+           ANCAK eğer bir method dependsOnMethods ile başka bir method'a bağlanmış ise
+           direk bağlı olan method(b)'u çalıştırmak isteseniz de
+           kendisi direk çalışmaz, önce bağlı olduğu method(a)' u çalıştırır
+           o çalışıp PASSED olursa, kendisi(b) de çalışır
+
+           AMA bu kural sadece iki method için geçerlidir,
+           üç veya daha fazla method'un bağlı olması durumunda
+           hata verir ve test method'larını çalıştıramaz
+
+
+        2- İsim sırası veya priority sebebi ile
+           önce bağlı olan method çalıştırmak istenirse
+           bağlı olan method, önceliği bağlı olduğu method'a verir
+           önce bağlı olunan method çalışır, eğer passed olursa
+           bağlı olan method da çalışır
+
+     */
+
     List<WebElement> bulunanUrunElementleriList;
 
-    @Test(priority = 1)
-    public void testOtomasyonAnaSayfaTesti() {
+    @Test
+    public void a() {
 
         // 1. Test : Testotomasyonu ana sayfaya gittiğinizi test edin
 
@@ -25,10 +53,10 @@ public class C04_DependsOnMethods {
 
         Assert.assertEquals(actualUrl, expectedUrl);
 
-    }
+    } // test otomasyon anasayfa testi
 
-    @Test(priority = 2)
-    public void aramaTesti() {
+    @Test(dependsOnMethods = "a")
+    public void b() {
 
         // 2. Test : search Box'ı kullanarak "phone" için arama yapın
         //           ve arama sonucunda ürün bulunabildiğini test edin
@@ -41,10 +69,10 @@ public class C04_DependsOnMethods {
 
         Assert.assertTrue(bulunanUrunElementleriList.size() > 0);
 
-    }
+    } // arama testi
 
-    @Test(priority = 3)
-    public void ilkUrunIsimTesti() {
+    @Test(dependsOnMethods = "b")
+    public void c() {
 
         // 3. Test : ilk ürünü tıklayın ve ürün isminin case sensitive olmaksızın phone içerdiğini test edin
         bulunanUrunElementleriList.get(0).click();
@@ -57,6 +85,6 @@ public class C04_DependsOnMethods {
         Assert.assertTrue(actualUrunIsmiKucukHarf.contains(expectedUrunIsimIcerigi));
 
         Driver.quitDriver();
-    }
+    } // ilk ürün isim testi
 
 }
