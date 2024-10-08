@@ -67,7 +67,6 @@ public class C03_SwitchingWindows {
 
         Driver.quitDriver();
 
-
     }
 
 }
