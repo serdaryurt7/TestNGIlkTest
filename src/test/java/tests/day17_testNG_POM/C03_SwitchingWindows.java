@@ -35,6 +35,7 @@ public class C03_SwitchingWindows {
         String addRemoveSayfasiWhd = Driver.getDriver().getWindowHandle();
 
         // 'Please click for Electronics Products' linkine tıklayın.
+        ReusableMethods.bekle(1);
         toAddRemovePage.electronicsLinki.click();
 
         // Electronics sayfasının açıldığını test edin.

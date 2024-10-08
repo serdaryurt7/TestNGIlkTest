@@ -13,6 +13,14 @@ public class Driver {
     /*
         Bu class'ın amacı belirlenen browser'a uygun webDriver objesi oluşturmak
      */
+
+    private Driver() {
+        // başka class'ların Driver class'ından obje oluşturmasını engellemek için
+        // Singleton pattern kullanılmıştır
+        // Singleton pattern class'dan obje oluşturulmasını engellemek için
+        // constructor'ı görünür yapıp, erişimini private yapmaya dayanır
+    }
+
     public static WebDriver driver;
 
     public static WebDriver getDriver() {
@@ -51,7 +59,9 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     driver = new FirefoxDriver();
                     break;
-
+                default:
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
 
             }
 
