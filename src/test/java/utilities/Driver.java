@@ -57,7 +57,7 @@ public class Driver {
 
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new FirefoxDriver();
+                    driver = new ChromeDriver();
                     break;
                 default:
                     WebDriverManager.chromedriver().setup();
