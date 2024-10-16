@@ -17,7 +17,7 @@ public class C01_NegatifLoginTesti {
     //4- SignIn butonuna basarak login olun
     //5- Başarılı olarak giriş yapılamadığını test edin
 
-    @Test
+    @Test(groups = {"smoke", "E2E", "reggression"})
     public void gecersizPasswordTesti() {
 
 
@@ -43,7 +43,7 @@ public class C01_NegatifLoginTesti {
 
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void gecersizEmailTesti() {
 
 
