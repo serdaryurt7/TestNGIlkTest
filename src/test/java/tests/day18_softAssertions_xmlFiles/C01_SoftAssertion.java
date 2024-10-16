@@ -36,7 +36,7 @@ public class C01_SoftAssertion {
         softAssert ile hazırlanan bir test method'unun sonunda
         assertAll() demezsek failed olan assertion olsa bile
         testimiz PASSED olur
-     */
+    */
 
     @Test
     public void softAssertAramaTesti() {
@@ -48,7 +48,7 @@ public class C01_SoftAssertion {
         String expectedUrl = ConfigReader.getProperty("toUrl") + "/asdf";
         String actualUrl = Driver.getDriver().getCurrentUrl();
 
-        // Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualUrl, expectedUrl, "URL testi failed"); // 1.assertion
 
