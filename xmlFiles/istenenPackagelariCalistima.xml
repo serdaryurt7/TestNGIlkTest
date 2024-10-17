@@ -10,7 +10,6 @@
 
             <package name="tests.day19_testNGReports"></package>
 
-
         </packages>
 
     </test>
