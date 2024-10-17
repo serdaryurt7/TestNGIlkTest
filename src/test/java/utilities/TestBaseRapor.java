@@ -20,9 +20,10 @@ public abstract class TestBaseRapor {
     // Test işlemine başlamadan hemen önce (test methodundan önce değil, tüm test işleminden önce)
     @BeforeTest(alwaysRun = true) // alwaysRun : her zaman çalıştır.
     public void setUpTest() {
-        extentReports = new ExtentReports();
+        extentReports = new ExtentReports(); // Raporlamayi baslatir
         //rapor oluştuktan sonra raporunuz nereye eklensin istiyorsanız buraya yazıyorsunuz.
-        String filePath = System.getProperty("user.dir") + "/raporlar/Rapor.html";
+        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        String filePath = System.getProperty("user.dir") + "/test-output/Rapor"+date+".html";
         //oluşturmak istediğimiz raporu (html formatında) başlatıyoruz, filePath ile dosya yolunu belirliyoruz.
         extentHtmlReporter = new ExtentHtmlReporter(filePath);
         extentReports.attachReporter(extentHtmlReporter);
@@ -31,8 +32,8 @@ public abstract class TestBaseRapor {
         extentReports.setSystemInfo("Enviroment","QA");
         extentReports.setSystemInfo("Browser", ConfigReader.getProperty("browser")); // chrome, firefox
         extentReports.setSystemInfo("Test Automation Engineer", "Serdar");
-        extentHtmlReporter.config().setDocumentTitle("window handle testi");
-        extentHtmlReporter.config().setReportName("window handle testi");
+        extentHtmlReporter.config().setDocumentTitle("TestNG Test");
+        extentHtmlReporter.config().setReportName("TestNG Reports");
     }
 
 
@@ -49,13 +50,14 @@ public abstract class TestBaseRapor {
             extentTest.skip("Test Case is skipped: " + result.getName()); // Ignore olanlar
         }
         Driver.closeDriver();
+
     }
 
 
     // Raporlandırmayı sonlandırmak icin
     @AfterTest(alwaysRun = true)
     public void tearDownTest() {
+
         extentReports.flush();
     }
 }
-
