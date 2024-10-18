@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.TestOtomasyonPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 import java.io.Reader;
 
@@ -21,10 +22,12 @@ public class C02_UrunSepetiTesti {
         TestOtomasyonPage testOtomasyonPage = new TestOtomasyonPage();
         testOtomasyonPage.aramaKutusu.sendKeys("phone" + Keys.ENTER);
         //3- Listelenen sonuçlardan ilkini tıklayın
+        ReusableMethods.bekle(2);
         testOtomasyonPage.bulunanUrunElementleriList.get(0).click();
 
         //4- ürün ismini kaydedin ve sepete ekleyin
         String urunSayfasindakiUrunIsmi = testOtomasyonPage.urunSayfasindaUrunIsimElementi.getText();
+        ReusableMethods.bekle(1);
         testOtomasyonPage.addToCartButonu.click();
 
         //5- your cart linkine tıklayın

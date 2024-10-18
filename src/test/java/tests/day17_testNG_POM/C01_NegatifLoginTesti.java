@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pages.TestOtomasyonPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 public class C01_NegatifLoginTesti {
 
@@ -23,7 +24,7 @@ public class C01_NegatifLoginTesti {
 
         //1- https://www.testotomasyonu.com/ anasayfasına gidin
         Driver.getDriver().get(ConfigReader.getProperty("toUrl"));
-
+        ReusableMethods.bekle(1);
         //2- account linkine basın
         TestOtomasyonPage testOtomasyonPage = new TestOtomasyonPage();
         testOtomasyonPage.accountLinki.click();
@@ -32,7 +33,7 @@ public class C01_NegatifLoginTesti {
         // - geçerli email, geçersiz password
         testOtomasyonPage.emailKutusu.sendKeys(ConfigReader.getProperty("toGecerliEmail"));
         testOtomasyonPage.passwordKutusu.sendKeys(ConfigReader.getProperty("toGecersizPassword"));
-
+        ReusableMethods.bekle(1);
         //4- SignIn butonuna basarak login olun
         testOtomasyonPage.loginButonu.click();
 
@@ -60,6 +61,7 @@ public class C01_NegatifLoginTesti {
         testOtomasyonPage.passwordKutusu.sendKeys(ConfigReader.getProperty("toGecerliPassword"));
 
         //4- SignIn butonuna basarak login olun
+        ReusableMethods.bekle(1);
         testOtomasyonPage.loginButonu.click();
 
         //5- Başarılı olarak giriş yapılamadığını test edin
@@ -78,13 +80,14 @@ public class C01_NegatifLoginTesti {
 
         //2- account linkine basın
         TestOtomasyonPage testOtomasyonPage = new TestOtomasyonPage();
+        ReusableMethods.bekle(1);
         testOtomasyonPage.accountLinki.click();
 
         //3- 3 farklı test method'u oluşturun
         // - geçersiz email, geçersiz password.
         testOtomasyonPage.emailKutusu.sendKeys(ConfigReader.getProperty("toGecersizEmail"));
         testOtomasyonPage.passwordKutusu.sendKeys(ConfigReader.getProperty("toGecersizPassword"));
-
+        ReusableMethods.bekle(1);
         //4- SignIn butonuna basarak login olun
         testOtomasyonPage.loginButonu.click();
 

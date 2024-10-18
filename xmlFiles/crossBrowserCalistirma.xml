@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- day20 crossbrowser calisacak testler package'indaki tum class'lari
+     hem chrome hem de firefox ile calistirin
+      1- xml dosyasında farklı browser'lar için farklı test tag'ları oluşturun
+      2- xml dosyasi calismaya başladıktan sonra
+         manuel olarak configuration.properties dosyasına mudahale edip
+         browser tercihini değiştirme şansımız olmadığından
+         xml dosyasından browser tercihini bir parametre olarak YOLLAMAK ZORUNDAYIZ
+      3- Bizim yazdığımız ve bugüne kadar kullandığımız tüm @Test method'lari
+         WebDriver objesini Driver class'ında oluşturuyordu.
+         Driver class'ı da hangi browser'a ait webDriver oluşturacağı bilgisini
+         configuration.properties dosyasindan alıyordu
+
+         Bu yapıdan dolayı normal testlerimizin cross browser calisma ihtimali yoktur
+         cross browser calistiracagimiz testleri özel olarak dizayn edeceğiz
+      
+      -->
+
+<suite name="CrossBrowser testler">
+
+    <test name="chrome ile calisacak testler">
+        <parameter name="crossBrowser" value="chrome"></parameter>
+        <packages>
+            <package name="tests.day20_CrossBrowserCalisacakTestler"></package>
+        </packages>
+
+    </test>
+
+    <test name="firefox ile calisacak testler">
+        <parameter name="crossBrowser" value="firefox"></parameter>
+        <packages>
+            <package name="tests.day20_CrossBrowserCalisacakTestler"></package>
+        </packages>
+
+    </test>
+
+</suite>
